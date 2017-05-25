@@ -93,6 +93,7 @@ python djicrypt.py -d -i downloadedfile -o outputfile
 ```
 
 Alternately you can just use openssl:
+```
 openssl enc -d -nosalt -in downloadedfile -aes-128-cbc -K 746869732d6165732d6b657900000000 -iv 00000000000000000000000000000000
-
+```
 
