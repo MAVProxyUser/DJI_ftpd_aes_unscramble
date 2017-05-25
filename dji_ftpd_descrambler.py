@@ -3,6 +3,7 @@ import sys
 import os
 
 from sys import platform
+# Requires pycrypto - https://pypi.python.org/pypi/pycrypto
 from Crypto.Cipher import AES
 
 def which(program):
