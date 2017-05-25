@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import sys
 import os
+
 from sys import platform
 from Crypto.Cipher import AES
 
@@ -42,14 +43,21 @@ if not wget:
     wget = which("wget")
 
     if not wget:
-        sys.exit( "You need wget! We can't even use the binaries we provides... something is wrong!" )
+        sys.exit( "You need wget! We can't even use the binaries we provided... something is wrong!" )
 
 if len(sys.argv) > 1:
-	message = open(sys.argv[1], 'r').read()
-else:
-	system.exit( "Usage: daCypha.py <filename>")
+    if sys.argv[1] == "192.168.42.2":
+        os.system("wget -m ftp://GPL:Violation@192.168.42.2/ -t 1 -T 10 -P DJI_aes_ftp_dump") # set retry to 1, because sometimes fatal.log, and others *hang*        
+        print "\nCheck the contents of the folder DJI_aes_ftp_dump\n"
+    elif os.path.isfile(sys.argv[1]):
+        message = open(sys.argv[1], 'r').read()
+        gplViolation = daCypha.decrypt(message)
+        print gplViolation
+    elif os.path.isdir(sys.argv[1]):
+        print "You specified a directory... try a filename instead!?"
 
-gplViolation = daCypha.decrypt(message)
-print gplViolation
+else:
+	system.exit( "Usage: daCypha.py <filename> (if set to 192.168.42.2 this script will mirror the DJI crafts ftpd)")
+
 
 
