@@ -4,6 +4,11 @@ import os
 
 from sys import platform
 # Requires pycrypto - https://pypi.python.org/pypi/pycrypto
+# You may want to use 'pip'. If on windows use the following instructions. 
+# https://stackoverflow.com/questions/29817447/how-to-run-pip-commands-from-cmd
+# You will also need Microsoft Visual C++ Compiler for Python 2.7 
+# On mac, try brew, or easy_install 
+
 from Crypto.Cipher import AES
 
 def which(program):
