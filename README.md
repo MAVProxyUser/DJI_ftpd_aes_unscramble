@@ -1,4 +1,4 @@
-# DJI_ftpd_aes_unscramble
+﻿# DJI_ftpd_aes_unscramble
 DJI has modified the GPL Busybox ftpd on Mavic, Spark, &amp; Inspire 2 to include scrambling of downloaded files... 
 
 Windows executable release created via:
@@ -36,8 +36,6 @@ $ xxd DJI_aes_ftp_dump/192.168.42.2/upgrade/dji/log/cp_assert.log  | head -n 10
 Descramble the file... profit! 
 ```
 $ python dji_ftpd_descrambler.py DJI_aes_ftp_dump/192.168.42.2/upgrade/dji/log/cp_assert.log  | head -n 10
-
-
     PBS^U\5] [0x0] state=0, reset phy
 [1980/00/01 0:0:5] [0x0]========= machine=1, state=0, runtime=72 =========
 [1980/00/01 0:0:5] [0x0] state=0, [0] reset mac to idle
@@ -50,6 +48,40 @@ $ python dji_ftpd_descrambler.py DJI_aes_ftp_dump/192.168.42.2/upgrade/dji/log/c
 [2017/04/14 14:44:8] [0x530] state from 3 to connect
 ```
 On Windows the process works the same, with alternate synatx on the command line. 
+
+You can use the new bash interface:
+kfinisterre@DESKTOP-QPUF664 MINGW64 ~/Desktop/DJI_ftpd_aes_unscramble (master)
+$ python dji_ftpd_descrambler.py kernel00.log
+oOZTPTP7] c0 1 (init) init: untracked pid 621 exited
+<7>[   52.603083] c3 0 (swapper/3) Warnning: timer5 int-excep
+<7>[   77.938720] c0 419 (dji_hdvt_gnd) bridge: start_xmit info: lmi42 xmit skb cb444000 CP busy!
+<7>[   78.001593] c0 461 (keyscan_task) bridge: start_xmit info: lmi42 xmit skb cb444000 CP ready!
+<7>[  162.814198] c3 439 (dji_hdvt_gnd) bridge: start_xmit info: lmi42 xmit skb ce24a300 CP busy!
+<7>[  162.891897] c0 273 (MB_Socket_Recei) bridge: start_xmit info: lmi42 xmit skb ce24a300 CP ready!
+<7>[  356.750230] c0 419 (dji_hdvt_gnd) bridge: start_xmit info: lmi42 xmit skb ce39fa80 CP busy!
+<7>[  356.814311] c0 461 (keyscan_task) bridge: start_xmit info: lmi42 xmit skb ce39fa80 CP ready!
+
+Or make use of the standard cmd.exe interface:
+C:\Users\kfinisterre\Desktop\DJI_ftpd_aes_unscramble>python dji_ftpd_descrambler.py kernel00.log | more
+!!!New kernel log start!!!
+
+<6>[    0.000000] c0 0 (swapper) Booting Linux on physical CPU 0x100
+<6>[    0.000000] c0 0 (swapper) Initializing cgroup subsys cpu
+<6>[    0.000000] c0 0 (swapper) Initializing cgroup subsys cpuacct
+<5>[    0.000000] c0 0 (swapper) Linux version 3.10.62 (jenkins@APServer01) (gcc version 4.7 (GCC) ) #1 SMP PREEMPT Mon Feb 27 20:12:56 CST 2017
+<4>[    0.000000] c0 0 (swapper) CPU: ARMv7 Processor [410fc075] revision 5 (ARMv7), cr=10c5387d
+<4>[    0.000000] c0 0 (swapper) CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+<4>[    0.000000] c0 0 (swapper) Machine: Leadcore Innopower
+<4>[    0.000000] c0 0 (swapper) start comip_parse_tag_mem_ext.
+<4>[    0.000000] c0 0 (swapper) Physical memory layout:
+<4>[    0.000000] c0 0 (swapper)     DRAM Bank1  : 0x00000000 - 0x20000000  ( 512 MB)
+<4>[    0.000000] c0 0 (swapper)     Modem       : 0x00000000 - 0x06400000  ( 100 MB)
+<4>[    0.000000] c0 0 (swapper)     Kernel Bank1: 0x06400000 - 0x16800000  ( 260 MB)
+<4>[    0.000000] c0 0 (swapper)     Framebuffer : 0x16800000 - 0x17800000  (  16 MB)
+-- More  --
+
+Alternatively on windows you can use the precompied .exe 
+
 
 Description:
 I miss the good ole days of public tar & feathering over GPL violations!
