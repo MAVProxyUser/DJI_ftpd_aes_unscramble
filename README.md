@@ -50,7 +50,8 @@ $ python dji_ftpd_descrambler.py DJI_aes_ftp_dump/192.168.42.2/upgrade/dji/log/c
 On Windows the process works the same, with alternate synatx on the command line. 
 
 You can use the new bash interface:
-kfinisterre@DESKTOP-QPUF664 MINGW64 ~/Desktop/DJI_ftpd_aes_unscramble (master)
+```
+MavproxyUser@DESKTOP-QPUF664 MINGW64 ~/Desktop/DJI_ftpd_aes_unscramble (master)
 $ python dji_ftpd_descrambler.py kernel00.log
 oOZTPTP7] c0 1 (init) init: untracked pid 621 exited
 <7>[   52.603083] c3 0 (swapper/3) Warnning: timer5 int-excep
@@ -60,9 +61,10 @@ oOZTPTP7] c0 1 (init) init: untracked pid 621 exited
 <7>[  162.891897] c0 273 (MB_Socket_Recei) bridge: start_xmit info: lmi42 xmit skb ce24a300 CP ready!
 <7>[  356.750230] c0 419 (dji_hdvt_gnd) bridge: start_xmit info: lmi42 xmit skb ce39fa80 CP busy!
 <7>[  356.814311] c0 461 (keyscan_task) bridge: start_xmit info: lmi42 xmit skb ce39fa80 CP ready!
-
+```
 Or make use of the standard cmd.exe interface:
-C:\Users\kfinisterre\Desktop\DJI_ftpd_aes_unscramble>python dji_ftpd_descrambler.py kernel00.log | more
+```
+C:\Users\MavproxyUser\Desktop\DJI_ftpd_aes_unscramble>python dji_ftpd_descrambler.py kernel00.log | more
 !!!New kernel log start!!!
 
 <6>[    0.000000] c0 0 (swapper) Booting Linux on physical CPU 0x100
@@ -79,7 +81,7 @@ C:\Users\kfinisterre\Desktop\DJI_ftpd_aes_unscramble>python dji_ftpd_descrambler
 <4>[    0.000000] c0 0 (swapper)     Kernel Bank1: 0x06400000 - 0x16800000  ( 260 MB)
 <4>[    0.000000] c0 0 (swapper)     Framebuffer : 0x16800000 - 0x17800000  (  16 MB)
 -- More  --
-
+```
 Alternatively on windows you can use the precompied .exe 
 
 
