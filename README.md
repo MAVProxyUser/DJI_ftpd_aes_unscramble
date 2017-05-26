@@ -1,6 +1,53 @@
 # DJI_ftpd_aes_unscramble
 DJI has modified the GPL Busybox ftpd on Mavic, Spark, &amp; Inspire 2 to include scrambling of downloaded files... 
 
+Windows executable release created via:
+c:\python27\Scripts\pyinstaller.exe --add-data=wget_bins;wget_bins dji_ftpd_descrambler.py
+
+If not using packaged release for Windows, make sure you have pip, and that pycrypto is installed
+
+Usage:
+Make sure you have a DJI Mavic, Inspire 2, or Phantom 4, or Spark connected. 
+
+Mirror the FTPD via the script, OR manually pull down a target file. 
+$ python dji_ftpd_descrambler.py 192.168.42.2
+--2017-05-25 23:57:13--  ftp://GPL:*password*@192.168.42.2/
+           => ‘DJI_aes_ftp_dump/192.168.42.2/.listing’
+Connecting to 192.168.42.2:21... ^C
+Check the contents of the folder DJI_aes_ftp_dump
+...
+
+Verify the file is AES encrytped aka "scrambled" per some forum chatter. 
+$ xxd DJI_aes_ftp_dump/192.168.42.2/upgrade/dji/log/cp_assert.log  | head -n 10
+00000000: dee9 a171 7fad 24e2 a2ad fe52 f2a9 43e4  ...q..$....R..C.
+00000010: cdf3 ab35 4ec3 82a8 f491 f3e5 40a8 c92c  ...5N.......@..,
+00000020: b80a 8c8e 0bef 6bf5 5505 b71c d819 9bde  ......k.U.......
+00000030: cf23 f181 68b1 ae23 6305 1c8b 4d1a 986c  .#..h..#c...M..l
+00000040: 4d3e 569a 97e1 33b0 7a05 4ff1 92c2 d88d  M>V...3.z.O.....
+00000050: 20b7 d872 5ef4 a288 f25d dc06 a8e7 6b0d   ..r^....]....k.
+00000060: dc14 85c1 45eb bc59 36d8 1c63 b17f d35b  ....E..Y6..c...[
+00000070: 07c0 1499 ff5b 4c0f 7cc7 df67 d09b a2ea  .....[L.|..g....
+00000080: 0dfc fcb3 8aab 5f06 aace 0f41 a6c6 fb89  ......_....A....
+00000090: 5d13 a609 c74a 7318 4734 2d95 d5bc b975  ]....Js.G4-....u
+
+Descramble the file... profit! 
+$ python dji_ftpd_descrambler.py DJI_aes_ftp_dump/192.168.42.2/upgrade/dji/log/cp_assert.log  | head -n 10
+
+
+    PBS^U\5] [0x0] state=0, reset phy
+[1980/00/01 0:0:5] [0x0]========= machine=1, state=0, runtime=72 =========
+[1980/00/01 0:0:5] [0x0] state=0, [0] reset mac to idle
+[1980/00/01 0:0:7] [0x1866] state=0, recv shakehand req
+[1980/00/01 0:0:7] [0x187c] state from 0 to connect
+[2017/04/14 14:42:30] [0x3d27d0] state=3, connect to out_of_sync
+[2017/04/14 14:42:30] [0x3d27d0] state=3, [1] reset mac to idle
+[2017/04/14 14:44:8] [0x47d] state=3, recv shakehand req
+[2017/04/14 14:44:8] [0x4c3] state=3, recv shakehand req
+[2017/04/14 14:44:8] [0x530] state from 3 to connect
+
+On Windows the process works the same, with alternate synatx on the command line. 
+
+Description:
 I miss the good ole days of public tar & feathering over GPL violations!
 
 ```
