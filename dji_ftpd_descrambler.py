@@ -57,7 +57,7 @@ if len(sys.argv) > 1:
         os.system("wget -m ftp://GPL:Violation@192.168.42.2/ -t 1 -T 10 -P DJI_aes_ftp_dump") # set retry to 1, because sometimes fatal.log, and others *hang*        
         print "\nCheck the contents of the folder DJI_aes_ftp_dump\n"
     elif os.path.isfile(sys.argv[1]):
-        message = open(sys.argv[1], 'r').read()
+        message = open(sys.argv[1], 'rb').read() 
         gplViolation = daCypha.decrypt(message)
         print gplViolation
     elif os.path.isdir(sys.argv[1]):
