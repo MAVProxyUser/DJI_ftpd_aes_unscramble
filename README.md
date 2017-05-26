@@ -82,10 +82,18 @@ C:\Users\MavproxyUser\Desktop\DJI_ftpd_aes_unscramble>python dji_ftpd_descramble
 <4>[    0.000000] c0 0 (swapper)     Framebuffer : 0x16800000 - 0x17800000  (  16 MB)
 -- More  --
 ```
-Alternatively on windows you can use the precompied .exe 
-
+Alternatively on windows you can use the precompied .exe (see the Releases tab)
+```
+C:\Users\kfinisterre\Desktop\dji_ftpd_descrambler>dji_ftpd_descrambler.exe c:\Users\kfinisterre\Desktop\kernel01.log | more
+h
+VTVSPW] c1 11916 (kworker/u10:0) bridge: drop 0xd228 packet due to buffer full
+<7>[ 1380.255734] c1 11916 (kworker/u10:0) bridge: drop 0xd28c packet due to buffer full
+<7>[ 1382.825736] c0 26031 (kworker/u10:1) bridge: drop 0xd2f0 packet due to buffer full
+```
 
 Description:
+
+
 I miss the good ole days of public tar & feathering over GPL violations!
 
 ```
