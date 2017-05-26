@@ -34,6 +34,7 @@ key = "\x74\x68\x69\x73\x2d\x61\x65\x73\x2d\x6b\x65\x79\x00\x00\x00\x00"
 iv  = "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
 daCypha = AES.new(key, AES.MODE_CBC, iv)
 message = ""
+os.environ["PATH"] = os.getcwd() + "/wget_bins" + os.pathsep + os.environ["PATH"]                 
 wget = which("wget")
 
 if not wget:
@@ -44,12 +45,7 @@ if not wget:
     elif platform == "win32":
         print "Windows assumes wget.exe is in %PATH% already"
 
-    os.environ["PATH"] += os.pathsep + os.getcwd() + "/wget_bins"
-
-    wget = which("wget")
-
-    if not wget:
-        sys.exit( "You need wget! We can't even use the binaries we provided... something is wrong!" )
+    sys.exit( "You need wget! We can't even use the binaries we provided... something is wrong!" )
 
 if len(sys.argv) > 1:
     if sys.argv[1] == "192.168.42.2":
