@@ -148,3 +148,15 @@ Alternately you can just use openssl:
 openssl enc -d -nosalt -in downloadedfile -aes-128-cbc -K 746869732d6165732d6b657900000000 -iv 00000000000000000000000000000000
 ```
 
+And of course *our* script as detailed above in Usage:
+
+In this example the ever so valuable DAAK is extracted... as is the WAEK (wireless password)
+
+$ python dji_ftpd_descrambler.py  /tmp/192.168.42.2_drone/upgrade/dji/log/kernel01.log  | grep daak | head -n 1
+```
+<5>[    0.000000] c0 0 (swapper) Kernel command line: watchdog_thresh=3 console=ttyS1,921600 vmalloc=412M android firmware_class.path=/vendor/firmware isolcpus=2,3,4 
+initrd=0x07400000,1M lcpart=mmcblk0=gpt:0:2000:200,ddr:2000:2000:200,env:4000:2000:200,panic:6000:2000:200,amt:8000:20000:200,factory:28000:4000:200,factory_out:2c000:4000:200,
+recovery:30000:8000:200,normal:38000:8000:200,system:40000:40000:200,vendor:80000:20000:200,cache:a0000:80000:200,blackbox:120000:400000:200,userdata:520000:228000:200  
+chip_sn=31337000 board_sn=01EAT2D111XXXX daak=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA daek=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA drak=6f707f2962351d75bc089ac34da119fa 
+saak=6f402fb8625205ce9bdd580217d218d8 waek=WIFIPASS production quiet board_id=0xe2200026
+```
