@@ -2,14 +2,16 @@
 DJI has modified the GPL Busybox ftpd on Mavic, Spark, &amp; Inspire 2 to include scrambling of downloaded files... 
 
 Windows executable release created via:
+```
 c:\python27\Scripts\pyinstaller.exe --add-data=wget_bins;wget_bins dji_ftpd_descrambler.py
-
+```
 If not using packaged release for Windows, make sure you have pip, and that pycrypto is installed
 
 Usage:
 Make sure you have a DJI Mavic, Inspire 2, or Phantom 4, or Spark connected. 
 
 Mirror the FTPD via the script, OR manually pull down a target file. 
+```
 $ python dji_ftpd_descrambler.py 192.168.42.2
 --2017-05-25 23:57:13--  ftp://GPL:*password*@192.168.42.2/
            => ‘DJI_aes_ftp_dump/192.168.42.2/.listing’
@@ -29,8 +31,10 @@ $ xxd DJI_aes_ftp_dump/192.168.42.2/upgrade/dji/log/cp_assert.log  | head -n 10
 00000070: 07c0 1499 ff5b 4c0f 7cc7 df67 d09b a2ea  .....[L.|..g....
 00000080: 0dfc fcb3 8aab 5f06 aace 0f41 a6c6 fb89  ......_....A....
 00000090: 5d13 a609 c74a 7318 4734 2d95 d5bc b975  ]....Js.G4-....u
+```
 
 Descramble the file... profit! 
+```
 $ python dji_ftpd_descrambler.py DJI_aes_ftp_dump/192.168.42.2/upgrade/dji/log/cp_assert.log  | head -n 10
 
 
@@ -44,7 +48,7 @@ $ python dji_ftpd_descrambler.py DJI_aes_ftp_dump/192.168.42.2/upgrade/dji/log/c
 [2017/04/14 14:44:8] [0x47d] state=3, recv shakehand req
 [2017/04/14 14:44:8] [0x4c3] state=3, recv shakehand req
 [2017/04/14 14:44:8] [0x530] state from 3 to connect
-
+```
 On Windows the process works the same, with alternate synatx on the command line. 
 
 Description:
