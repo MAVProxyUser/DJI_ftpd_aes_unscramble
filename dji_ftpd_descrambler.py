@@ -42,10 +42,15 @@ if not wget:
         print "Linux is not supported"
     elif platform == "darwin":
         print "OSX assumes brew wget or other wget is in $PATH already"
+        wget = "wget_bins/wget"
     elif platform == "win32":
         print "Windows assumes wget.exe is in %PATH% already"
+        wget = "wget_bins\\wget.exe"
 
-    sys.exit( "You need wget! We can't even use the binaries we provided... something is wrong!" )
+    if os.path.exists(wget):
+        print "Using repo copy of wget"
+    else:
+        sys.exit( "You need wget! We can't even use the binaries we provided... something is wrong!" )
 
 if len(sys.argv) > 1:
     if sys.argv[1] == "192.168.42.2":
