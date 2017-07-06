@@ -64,7 +64,7 @@ if len(sys.argv) > 1:
         print "You specified a directory... try a filename instead!?"
 
 else:
-	system.exit( "Usage: daCypha.py <filename> (if set to 192.168.42.2 this script will mirror the DJI crafts ftpd)")
+	sys.exit( "Usage: daCypha.py <filename> (if set to 192.168.42.2 this script will mirror the DJI crafts ftpd)")
 
 
 
