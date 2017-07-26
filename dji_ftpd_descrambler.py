@@ -59,12 +59,18 @@ if len(sys.argv) > 1:
     elif os.path.isfile(sys.argv[1]):
         message = open(sys.argv[1], 'rb').read() 
         gplViolation = daCypha.decrypt(message)
-        print gplViolation
+
+	# undo the weird xor stuff that DJI does to try and beat us
+        s = bytearray(gplViolation)
+        for i in range(10):
+                s[i] ^= 0x30 + i
+        for i in range(10,16):
+                s[i] ^= 0x57 + i
+        gplViolation = str(s)
+
+        sys.stdout.write(gplViolation)
     elif os.path.isdir(sys.argv[1]):
         print "You specified a directory... try a filename instead!?"
 
 else:
 	sys.exit( "Usage: daCypha.py <filename> (if set to 192.168.42.2 this script will mirror the DJI crafts ftpd)")
-
-
-
