@@ -4,12 +4,14 @@ import os
 
 from sys import platform
 # Requires pycrypto - https://pypi.python.org/pypi/pycrypto
+# Requires pkcs7 - https://pypkg.com/pypi/pkcs7/f/pkcs7/__init__.py
 # You may want to use 'pip'. If on windows use the following instructions. 
 # https://stackoverflow.com/questions/29817447/how-to-run-pip-commands-from-cmd
 # You will also need Microsoft Visual C++ Compiler for Python 2.7 
 # On mac, try brew, or easy_install 
 
 from Crypto.Cipher import AES
+from pkcs7 import PKCS7Encoder
 
 def which(program):
     import os
@@ -67,6 +69,8 @@ if len(sys.argv) > 1:
         for i in range(10,16):
                 s[i] ^= 0x57 + i
         gplViolation = str(s)
+	encoder = PKCS7Encoder()
+	gplViolation = encoder.decode(str(s))
 
         sys.stdout.write(gplViolation)
     elif os.path.isdir(sys.argv[1]):
