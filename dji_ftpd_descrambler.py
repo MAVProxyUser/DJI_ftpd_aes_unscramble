@@ -32,8 +32,8 @@ def which(program):
     return None
 
 
-key = "\x74\x68\x69\x73\x2d\x61\x65\x73\x2d\x6b\x65\x79\x00\x00\x00\x00"
-iv  = "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+key = "this-aes-key\x00\x00\x00\x00"
+iv  = "0123456789abcdef"
 daCypha = AES.new(key, AES.MODE_CBC, iv)
 message = ""
 os.environ["PATH"] = os.getcwd() + "/wget_bins" + os.pathsep + os.environ["PATH"]                 
@@ -61,16 +61,8 @@ if len(sys.argv) > 1:
     elif os.path.isfile(sys.argv[1]):
         message = open(sys.argv[1], 'rb').read() 
         gplViolation = daCypha.decrypt(message)
-
-	# undo the weird xor stuff that DJI does to try and beat us
-        s = bytearray(gplViolation)
-        for i in range(10):
-                s[i] ^= 0x30 + i
-        for i in range(10,16):
-                s[i] ^= 0x57 + i
-        gplViolation = str(s)
 	encoder = PKCS7Encoder()
-	gplViolation = encoder.decode(str(s))
+	gplViolation = encoder.decode(gplViolation)
 
         sys.stdout.write(gplViolation)
     elif os.path.isdir(sys.argv[1]):
