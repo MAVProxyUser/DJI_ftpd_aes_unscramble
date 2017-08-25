@@ -1,4 +1,9 @@
 ﻿# DJI_ftpd_aes_unscramble
+
+Update: DJI has complied with the GPL requests for the code related to this repo:
+http://www.dji.com/opensource
+https://s3.amazonaws.com/dji-brandsite-document/opensource/busybox-1.25.1.tar.gz
+
 DJI has modified the GPL Busybox ftpd on Mavic, Spark, &amp; Inspire 2 to include scrambling of downloaded files... 
 
 Windows executable release created via:
