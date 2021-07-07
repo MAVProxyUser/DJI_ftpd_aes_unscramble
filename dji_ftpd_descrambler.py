@@ -32,7 +32,7 @@ def which(program):
     return None
 
 
-key = "this-aes-key\x00\x00\x00\x00"
+key = "YP1Nag7ZR&Dj\x00\x00\x00\x00"
 iv  = "0123456789abcdef"
 daCypha = AES.new(key, AES.MODE_CBC, iv)
 message = ""
